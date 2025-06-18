@@ -2,3 +2,4 @@
 .json
 config.json
 .js
+package.lock.json

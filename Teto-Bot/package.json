@@ -18,6 +18,7 @@
     "express": "^5.1.0",
     "express-session": "^1.18.1",
     "mongoose": "^8.16.0",
+    "ollama": "^0.5.16",
     "openai": "^5.5.0"
   }
 }

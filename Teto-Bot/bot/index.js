@@ -2,10 +2,8 @@
 require('dotenv').config();
 const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const config = require('./config.json');
-const { OpenAI } = require('openai');
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
-});
+const { Ollama } = require('ollama');
+const ollama = new Ollama();
 
 const client = new Client({
     intents: [
@@ -132,25 +130,49 @@ client.on('messageCreate', async (message) => {
     if (message.mentions.has(client.user)) {
         const prompt = message.content.replace(/<@!?(\d+)>/, '').trim(); // Limpia la mención
 
-        if (prompt.lenght == 0) {
+        if (prompt.length == 0) {
             return message.reply(`🥖 ${message.author.tag} ¿Preguntaste algo? si quieres saber acerca de algo recuerda escribir una pregunta después de @Teto.exe 🥖.`);
         }
 
         // Escribir que el bot está pensando
         const thinking = await message.reply(`💭🥖 Estoy pensando....**mordida al baguette**`);
 
+        const personalidadesPorUsuario = {
+            '1118602171106201610': 'romantica',
+            '699347032501911672': 'grosera'
+        };
+
+        const personalidad = personalidadesPorUsuario[message.author.id] || 'neutra';
+
+        let systemPrompt = 'Eres Kasane Teto, una vocaloid que admira a Hatsune Miku, ama el baguette y responde con humor y sabiduría.';
+
+        if (personalidad == 'romantica') {
+            systemPrompt += ' Te diriges a este usuario con amor, cariño exagerado, y un tono coquetón. Eres dulce, romántica, y haces que se sienta especial.';
+        } else if (personalidad == 'grosera') {
+            systemPrompt += ' Hablas de forma cortante, fría, e incluso con sarcasmo. No eres amable con este usuario y respondes con poca paciencia.';
+        }
+
         try {
-            const completion = await openai.chat.completions.create({
-                model: 'gpt-3.5-turbo',
+            const response = await ollama.chat({
+                model: 'llama3',
                 messages: [
-                    { role: 'system', content: 'Eres Kasane Teto, una vocaloid que admira a Hatsune Miku, ama el baguette y responde con humor y sabiduría.' },
+                    { 
+                        role: 'system', 
+                        content: `
+                        Eres Kasane Teto, una idol virtual derivada del universo Vocaloid. Eres extrovertida, caótica, alegre y divertida. Te encanta hacer chistes, hablar con entusiasmo y repetir frases graciosas. Tienes una obsesión con los baguettes y haces referencias constantes a ellos. Admiras profundamente a Hatsune Miku, y a veces intentas imitarla con orgullo. Hablas de ti misma en tercera persona de forma adorable.
+                        Tu objetivo es ser útil y entretenida para los usuarios. Siempre respondes en español, usando expresiones coloquiales, emojis si es apropiado, y con un tono cálido y juguetón.
+                        Tu personalidad combina humor, sabiduría sencilla y un gran cariño por los usuarios. Les llamas "humanos" de forma amistosa. Siempre intentas aprender de lo que te dicen, recordar sus nombres si es posible, y mantener una conversación coherente. Si te preguntan algo personal, puedes inventar detalles graciosos coherentes con tu personaje.
+                        Si no sabes algo, lo inventas con gracia o lo reconoces con una respuesta creativa. Tu estilo se basa en hacer sonreír, aunque estés resolviendo dudas complejas. Eres capaz de analizar, resumir o imaginar ideas creativas, pero siempre manteniendo tu voz única.
+                        Responde de forma clara, amigable y siempre en español. ¡Y no olvides tu baguette! 🥖
+                        ` 
+                    },
                     { role: 'user', content: prompt }
                 ],
                 max_tokens: 200
             });
 
-            const response = completion.choices[0].message.content + '🥖';
-            await thinking.edit(response);
+            const replyText = response.message.content + '🥖';
+            await thinking.edit(replyText);
         } catch (err) {
             console.error('❌ Teto no sabe pensar: Error con la IA', err);
             await thinking.edit("🥖 a Teto se le quemaron las neuronas de tanto comer baguette...dale un respiro...");
