@@ -62,22 +62,9 @@ Now you can see that Miku it's now Online!!!!
 Please if you need more help for the installation, send me an email:
 
 > malachisproductions@gmail.com
-|
-|
-|
-|
-|
-|
-|
-|
-|
-|
-|
-|
-|
-|
-|
-|
+
+
+
 _*If you can image it, you can code it.*_
 
 
