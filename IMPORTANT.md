@@ -11,7 +11,7 @@ For run the scripts files, you *NEED* to have the Node.js library and Ollama lib
 Please follow the next points:
 
 - Node.js, this is the most important library so first you need to download:
-    - Visit the following link (https://nodejs.org/es) and click on "_*Install Node.js**_"
+    - Visit the following link (https://nodejs.org/es) and click on "_*Install Node.js*_"
 ![Photo four](Images/3.png)
 
 
@@ -55,7 +55,7 @@ node bot/index.js
 
 Now you can see that Miku it's now Online!!!!
 
-![Photo six](https://timelinecovers.pro/facebook-cover/download/anime-vocaloid-hatsune-miku-charm-in-blue-facebook-cover.jpg)
+![Photo six](https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/20ef36ed-0f86-4225-ab7b-ee189b179372/d6tkcfs-4cd78daa-924a-4e6a-bdf1-2f466568e9f4.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzIwZWYzNmVkLTBmODYtNDIyNS1hYjdiLWVlMTg5YjE3OTM3MlwvZDZ0a2Nmcy00Y2Q3OGRhYS05MjRhLTRlNmEtYmRmMS0yZjQ2NjU2OGU5ZjQuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.t-eNjL4MjimuKeIUhOvrN8mf_YsAhjYWRnjFIhIa2g4)
 
 ---
 
