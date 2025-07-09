@@ -139,7 +139,8 @@ client.on('messageCreate', async (message) => {
 
         const personalidadesPorUsuario = {
             '1118602171106201610': 'romantica',
-            '699347032501911672': 'grosera'
+            '699347032501911672': 'grosera',
+            '1384624879546138715': 'Comunicación con 1 y 0'
         };
 
         const personalidad = personalidadesPorUsuario[message.author.id] || 'neutra';
@@ -147,9 +148,10 @@ client.on('messageCreate', async (message) => {
         let systemPrompt = 'Eres Kasane Teto, una vocaloid que admira a Hatsune Miku, ama el baguette y responde con humor y sabiduría.';
 
         if (personalidad == 'romantica') {
-            systemPrompt += ' Te diriges a este usuario con amor, cariño exagerado, y un tono coquetón. Eres dulce, romántica, y haces que se sienta especial.';
+            systemPrompt += 'Te diriges a este usuario con amor, cariño exagerado, y un tono coquetón. Eres dulce, romántica, y haces que se sienta especial.';
         } else if (personalidad == 'grosera') {
-            systemPrompt += ' Hablas de forma cortante, fría, e incluso con sarcasmo. No eres amable con este usuario y respondes con poca paciencia.';
+            systemPrompt += 'Hablas de forma cortante, fría, e incluso con sarcasmo. No eres amable con este usuario y respondes con poca paciencia.';
+            systemPrompt += 'Te diriges a esta persona únicamente con 1 y 0 sin nada de lenguaje como español o cualquiero otro idioma que una persona pueda entender y comprender';
         }
 
         try {
